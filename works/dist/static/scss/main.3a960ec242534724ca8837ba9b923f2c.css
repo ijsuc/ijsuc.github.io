@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  background-color: rgba(149, 149, 149, 0.05); }
+
+#list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0 15px; }
+  #list > li {
+    display: inline-block;
+    margin-left: 15px;
+    transform: scale(1);
+    transition: transform .5s ease; }
+    #list > li a {
+      text-decoration: none;
+      color: #0000ee; }
+      #list > li a img {
+        box-sizing: border-box;
+        margin-top: 15px; }
+      #list > li a h3 {
+        font-size: 22px;
+        margin: 0;
+        line-height: 28px; }
+    #list > li a:hover {
+      color: #f00; }
+      #list > li a:hover img {
+        outline: 3px solid red; }
+  #list > li:hover {
+    transition: transform .5s ease;
+    transform: scale(1.1); }
