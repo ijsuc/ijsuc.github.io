@@ -107,11 +107,11 @@ let zoom = [];
 
 // }
 
-var iconSize = screenSize[0] > screenSize[1] ? 0.056 * screenSize[0] : 0.11 * screenSize[1];
+let iconSize = screenSize[0] > screenSize[1] ? 0.056 * screenSize[0] : 0.11 * screenSize[1];
 
 iconSize = iconSize < 70 && screenSize[0] > screenSize[1] ? 80 : iconSize;
 
-var configs = {
+let configs = {
   containerSize: [screenSize[0], screenSize[1]],
   desktopSize: [screenSize[0], screenSize[1] * 0.81],
   dockStartPosition: [0.188 * screenSize[0], screenSize[1] * 0.04],
@@ -234,7 +234,7 @@ let css = {
   }
 };
 
-var enlarge = element => {
+const enlarge = element => {
   let containerSize = [configs.containerSize[0], configs.containerSize[1]];
   let x = containerSize[0] / iconSize;
   let y = containerSize[1] / iconSize;
@@ -260,7 +260,7 @@ var enlarge = element => {
   desktopContainer.style.transform = `translate3d(${translateX}px,-1700px,0px) scale(${zoom[0]},${zoom[1]})`;
 };
 
-var reduce = element => {
+const reduce = element => {
   Object(__WEBPACK_IMPORTED_MODULE_1__scripts_libs_closest__["a" /* closest */])(element, '.dock').style.transform = 'scale(1,1)';
   setTimeout(() => {
     dock.style.height = configs.dockSize[1] + 'px';
@@ -281,7 +281,7 @@ var getTransformPosition = element => {
   return position;
 };
 
-var desktopRender = () => {
+const desktopRender = () => {
   var desktop, sliderItem, item;
 
   __WEBPACK_IMPORTED_MODULE_2__scripts_models_model_json___default.a.desktops.forEach((el, index) => {
@@ -347,7 +347,7 @@ let desktopItemMoveIndex = () => {
 desktopItemMoveIndex();
 
 let dockEl;
-var dockRender = () => {
+const dockRender = () => {
   __WEBPACK_IMPORTED_MODULE_2__scripts_models_model_json___default.a.dock.forEach((element, index) => {
     if (!element.item) {
       element.item = Object(__WEBPACK_IMPORTED_MODULE_3__scripts_libs_html_js__["a" /* HTML */])(['<div class="item-container">', `<div class="item" data-index="${index}" style="background-image: url(${element.pic});">`, `<div class="title">${element.title}</div>`, '<div class="before-space"></div>', '<div class="after-space hidden"></div>', '<div class="close"></div>', '<div class="app hidden">', '<input type="button" value="关闭" class="dock-app-off hidden">', '</div>', '</div>', '</div>']).append(dock);
@@ -380,7 +380,7 @@ let allTitlePosition = () => {
 
 allTitlePosition();
 
-let box = document.createElement('div');
+const box = document.createElement('div');
 box.className = 'box';
 container.appendChild(box);
 
@@ -388,12 +388,12 @@ container.appendChild(box);
 // dockBox.className = 'dockBox';
 // dockContainer.appendChild( dockBox );
 
-var spaceStyle = (container, html) => {
+const spaceStyle = (container, html) => {
   css.spaceIndexLeftWidth(html.length ? html[0] : html, [-configs.dockSpaceSize[0] + iconSize, configs.dockSpaceSize[0] - iconSize]);
   container.length === 3 ? css.spaceIndexLeftWidth(html[2], [iconSize, configs.dockSpaceSize[0] - iconSize]) : null;
 };
 
-var sliderDesktopIndexEndPositionRender = () => {
+const sliderDesktopIndexEndPositionRender = () => {
   Array.from(sliderDesktop.children).forEach((item, index) => {
     Array.from(item.children).forEach((el, index) => {
       let elIndex = Number(el.firstChild.dataset.index);
@@ -409,7 +409,7 @@ var sliderDesktopIndexEndPositionRender = () => {
   });
 };
 
-let sliderDockIndexEndPositionRender = () => {
+const sliderDockIndexEndPositionRender = () => {
   let itemArr = Array.from(dock.children);
   let length = itemArr.length;
   itemArr.forEach(item => {
@@ -419,7 +419,7 @@ let sliderDockIndexEndPositionRender = () => {
   });
 };
 
-var inlineBoxIndexEndPositionRender = element => {
+const inlineBoxIndexEndPositionRender = element => {
   Array.from(element.children).forEach((item, index) => {
     let elIndex = Number(item.firstChild.dataset.index);
     item.firstChild.classList.add('animate');
@@ -429,7 +429,7 @@ var inlineBoxIndexEndPositionRender = element => {
   });
 };
 
-var positionTest = (container, position) => {
+const positionTest = (container, position) => {
   let arr = Array.from(container.children);
   let containerSize = [container.offsetWidth, container.offsetHeight];
   let item = arr.length - 1 !== -1 ? container.className === 'desktop' && rowNumLast !== null ? rowNumLast : getTransformPosition(arr[arr.length - 1]) : [0, 0];
@@ -453,8 +453,8 @@ var positionTest = (container, position) => {
   }
 };
 
-var target, times, mouseIsdown, startIndex, downIsIndex;
-var desktopItem, dockItem, modelItem, modelIndex, modelDesktopIndex;
+let target, times, mouseIsdown, startIndex, downIsIndex;
+let desktopItem, dockItem, modelItem, modelIndex, modelDesktopIndex;
 
 document.addEventListener('mousedown', event => {
   mouseIsdown = true;
@@ -464,6 +464,11 @@ document.addEventListener('mousedown', event => {
       sliderDesktopIndexEndPositionRender();
       container.classList.add('animate');
     }, 1500);
+  }
+
+  //点击屏幕关闭托拽功能
+  if (target.className === 'desktop') {
+    container.classList.remove('animate');
   }
 
   if (Object(__WEBPACK_IMPORTED_MODULE_1__scripts_libs_closest__["a" /* closest */])(target, '.hidden animate') && target.className === 'item') {
@@ -701,7 +706,6 @@ document.addEventListener('mouseup', event => {
 }, false);
 
 document.addEventListener('keydown', event => {
-
   switch (window.event.keyCode) {
     case 13:
     case 32:
@@ -713,7 +717,7 @@ document.addEventListener('keydown', event => {
 
 let start, ends, end;
 
-var sequence = (indexA, indexB, desktop) => {
+const sequence = (indexA, indexB, desktop) => {
 
   if (indexA - indexB === -1 || indexA - indexB === 0) {
     return;
