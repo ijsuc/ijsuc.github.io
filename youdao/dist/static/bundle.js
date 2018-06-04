@@ -22205,14 +22205,18 @@ var Home = function (_Component) {
   _createClass(Home, [{
     key: "onSearch",
     value: function onSearch(event) {
-      this.setState({ value: event.target.value });
+      if (event.target.vaule.trim() !== '') {
+        this.setState({ value: event.target.value });
+      }
     }
   }, {
     key: "onAdd",
     value: function onAdd(value) {
       var _this2 = this;
 
-      var url = "//fanyi.youdao.com/openapi.do?keyfrom=jason512&key=653961669&type=data&doctype=jsonp&version=1.1&q=" + value;
+      var protocol = window.location.protocol;
+
+      var url = protocol + "//fanyi.youdao.com/openapi.do?keyfrom=jason512&key=653961669&type=data&doctype=jsonp&version=1.1&q=" + value;
 
       (0, _fetchJSONP2.default)(url).then(function (result) {
         _this2.setState({
