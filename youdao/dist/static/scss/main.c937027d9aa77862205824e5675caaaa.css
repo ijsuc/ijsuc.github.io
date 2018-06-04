@@ -1,17 +1,14 @@
-body{
-  background-color: #fff;
-}
+body {
+  background-color: #fff; }
 
-.result{
-  padding: 20px;
-}
+.result {
+  padding: 20px; }
 
-h1{
+h1 {
   text-align: center;
-  padding-top: 15px;
-}
+  padding-top: 15px; }
 
-input{
+input {
   width: 80%;
   border: 0px;
   margin-left: 10px;
@@ -19,20 +16,17 @@ input{
   border-radius: 15px;
   height: 30px;
   padding-left: 10px;
-  font-size: 16px;
-}
+  font-size: 16px; }
 
-button{
+button {
   height: 30px;
   border-radius: 15px;
   border: 0;
-  outline: none;
-}
+  outline: none; }
 
-.body{
+.body {
   width: 300px;
   height: 400px;
   background-color: #f9f9f9;
   border-radius: 8px;
-  margin: 30px auto;
-}
+  margin: 30px auto; }
