@@ -1,3 +1,0 @@
-域名：ijsuc.com
-主机记录：alidnscheck
-记录值：2e5204ac8a76412faceb639aa34305b5
