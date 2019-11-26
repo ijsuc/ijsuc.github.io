@@ -27,7 +27,7 @@
     <!--Title-->
 
 
-<title>React 路由匹配 | 个人博客</title>
+<title>A星寻路 demo 详解 | 个人博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="个人博客" type="application/atom+xml">
@@ -108,9 +108,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="React 路由匹配">
+        <h1 id="A星寻路 demo 详解">
             
-	            React 路由匹配
+	            A星寻路 demo 详解
             
         </h1>
         <div class="post-meta">
@@ -118,8 +118,8 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/ ">
-             
+        <a href="/categories/学习笔记">
+            学习笔记
         </a>
     </span>
     
@@ -128,6 +128,10 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
+                
+                    <a href="/tags/学习笔记" title='学习笔记'>
+                        学习笔记
+                    </a>
                 
             
         </span>
@@ -138,39 +142,38 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2016/10/17</span>
+            <span class="date-meta">2019/11/25</span>
         </span>
     
 </div>
 
             
             
-            <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>1134</strong>天之前发表，文中内容可能已经过时。
-            </p>
-        
     </div>
     
     <div class="post-body post-content">
-        <p>一个路径有确定它是否“匹配”的URL三个属性:</p>
-<ol>
-<li>嵌套</li>
-<li>它的 path</li>
-<li>它的优先级 </li>
-</ol>
-<a id="more"></a>
-<h3 id="嵌套"><a href="#嵌套" class="headerlink" title="嵌套"></a>嵌套</h3><p>反应路由器使用嵌套路线的概念，让你申报嵌套组调用指定的URL时应该呈现的观点。嵌套路线布置成树状结构。为了找到一个匹配，路由器做出反应穿越路线配置深度优先搜索该网址相符的路线。</p>
-<h3 id="路径语法"><a href="#路径语法" class="headerlink" title="路径语法"></a>路径语法</h3><p>路线路径是一个字符串模式，用于匹配的URL（或其中的一部分）。路由路径字面解释，除以下特殊符号:</p>
-<ul>
-<li>:paramName -匹配的URL段到下一个/，?或#。匹配的字符串被称为参数</li>
-<li>() - 包装的URL的一部分是可选</li>
-<li>* - 匹配所有字符（非贪婪）到在模式的下一个字符，或者如果没有，并创建一个URL的结束参数splat</li>
-<li>**-匹配，直到下一次所有字符（贪婪）/，?或#并创建一个参数splat</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=<span class="string">"/hello/:name"</span>&gt;   <span class="comment">// matches /hello/michael and /hello/ryan</span></span><br><span class="line">&lt;Route path=<span class="string">"/hello(/:name)"</span>&gt; <span class="comment">// matches /hello, /hello/michael, and /hello/ryan</span></span><br><span class="line">&lt;Route path=<span class="string">"/files/*.*"</span>&gt;     <span class="comment">// matches /files/hello.jpg and /files/hello.html</span></span><br><span class="line">&lt;Route path=<span class="string">"/**/*.jpg"</span>&gt;      <span class="comment">// matches /files/hello.jpg and /files/path/to/file.jpg</span></span><br></pre></td></tr></table></figure>
-<p>如果路由使用相对path，它建立在积累的path祖先。嵌套的路由可能是由退出的这种行为用一个绝对的path。</p>
-<h3 id="优先权"><a href="#优先权" class="headerlink" title="优先权"></a>优先权</h3><p>最后，该路由算法试图匹配的顺序路由它们被定义，从上到下。所以，当你有两个兄弟的路线，你应该确保先不匹配所有可能的path，可以通过以后的兄弟相匹配秒。例如，不这样做：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;Route path=<span class="string">"/comments"</span> ... /&gt;</span><br><span class="line">&lt;Redirect <span class="keyword">from</span>=<span class="string">"/comments"</span> ... /&gt;</span><br></pre></td></tr></table></figure>
+        <h1 id="Model-Data"><a href="#Model-Data" class="headerlink" title="Model Data"></a>Model Data</h1><p>假设由一个 49 格小格组成个地图, 每小格为每个节点信息, 开始格子 23, 结束格 27, 障碍格了 18、25、32。 </p>
+<p><img src="https://cdn.summerfarm.net/ijsuc/img/amap.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const data = [&#123; </span><br><span class="line">  index: 1, </span><br><span class="line">  direction: [ N, W, S, E ],</span><br><span class="line">  G: Number,</span><br><span class="line">  x: Number,</span><br><span class="line">  y: Number,</span><br><span class="line">  type: String</span><br><span class="line">&#125;, ...]</span><br></pre></td></tr></table></figure></p>
+<p><code>index</code> 当前格子索引可用 Map 存起来。<br><code>direction</code> 方向(也可为8个方向), 当前格子相邻格子<code>index</code>, 无则为 null。<br><code>x</code> 当前格子的坐标。<br><code>y</code> 当前格子的坐标。<br><code>type</code> start 开始点, end 终点, roadblock 障碍, openList 已计算过 FGH 值, passby 路线。</p>
+<h1 id="FGH-值计算"><a href="#FGH-值计算" class="headerlink" title="FGH 值计算"></a>FGH 值计算</h1><p>计算以起点相邻格子的 FGH 值。</p>
+<h2 id="G-值计算"><a href="#G-值计算" class="headerlink" title="G 值计算"></a>G 值计算</h2><p>G = 从起点移动格子之间的成本。</p>
+<p>假设移动 1 格为 10, 那么 2 格为 2 * 10。</p>
+<p>公式</p>
+<p>G = | x - x1 | + | y - y1 |</p>
+<h2 id="H-值计算"><a href="#H-值计算" class="headerlink" title="H 值计算"></a>H 值计算</h2><p>H = 指定的方格移动到终点的估算成本, 在这个例子我们采用的是<a href="https://baike.baidu.com/item/%E6%9B%BC%E5%93%88%E9%A1%BF%E8%B7%9D%E7%A6%BB" target="_blank" rel="noopener">曼哈顿距离</a></p>
+<p><img src="https://cdn.summerfarm.net/ijsuc/img/h.jpg" alt="曼哈顿距离"></p>
+<p>公式</p>
+<p>H = | x - x1 | + | y - y1 |</p>
+<p><code>x, y</code> 为每个格子的 x, y<br><code>x1, y1</code> 为 end 的 x, y</p>
+<h2 id="F-值计算"><a href="#F-值计算" class="headerlink" title="F 值计算"></a>F 值计算</h2><p>F = G + H</p>
+<p>开始格子 23 相邻格子 <code>diretion</code> 获得 16、24、30、22。计算出 FGH 值, parent 存在格子数据内。已计算的格子 type 值改为 openList, 代表已计算过不在计算, 将格子数据存放在数组 openList 内。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Map.get( 16 ).G = G;</span><br><span class="line">Map.get( 16 ).H = H;</span><br><span class="line">Map.get( 16 ).F = G + H;</span><br></pre></td></tr></table></figure>
+<h1 id="路线搜索"><a href="#路线搜索" class="headerlink" title="路线搜索"></a>路线搜索</h1><p>以开始点相邻格子计算出的数组 openList 以最小 F 值排序从大到小( F相等取最小H)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openList.sort(( a, b ) =&gt; b.F - a.F || b.H - a.H );</span><br></pre></td></tr></table></figure>
+<p>删除数组的最后一位数据, 以这数据在去查找相邻未计算并且不是障碍的格了。加入 openList。排序 openList。循环以上部操作直到找到 end。</p>
+<p><img src="https://cdn.summerfarm.net/ijsuc/img/comput-path.png" alt="路线搜索过程"></p>
+<h1 id="画路线"><a href="#画路线" class="headerlink" title="画路线"></a>画路线</h1><p>找到 end 后我们以<code>parent</code>递归查到 start。过程中 type 值改为 passby。</p>
+<p><img src="https://cdn.summerfarm.net/ijsuc/img/passby.png" alt="画出路线"></p>
 
     </div>
 
@@ -188,15 +191,10 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/blog/2016/11/01/React扩展属性共享/" class="pre-post btn btn-default" title='React 扩展组件之间的shardState'>
-            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">React 扩展组件之间的shardState</span>
-        </a>
     
-    
-        <a href="/blog/2016/10/05/js无刷新修改URL /" class="next-post btn btn-default" title='JS 无刷新修改 URL'>
+        <a href="/blog/2019/10/21/dialog-对话框-electron-remote-dialog/" class="next-post btn btn-default" title='dialog(对话框 electron.remote.dialog)'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">JS 无刷新修改 URL</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">dialog(对话框 electron.remote.dialog)</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
