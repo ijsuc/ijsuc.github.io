@@ -170,9 +170,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Map.get( 16 ).G = G;</span><br><span class="line">Map.get( 16 ).H = H;</span><br><span class="line">Map.get( 16 ).F = G + H;</span><br></pre></td></tr></table></figure>
 <h1 id="路线搜索"><a href="#路线搜索" class="headerlink" title="路线搜索"></a>路线搜索</h1><p>以开始点相邻格子计算出的数组 openList 以最小 F 值排序从大到小( F相等取最小H)。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openList.sort(( a, b ) =&gt; b.F - a.F || b.H - a.H );</span><br></pre></td></tr></table></figure>
-<p>删除数组的最后一位数据, 以这数据在去查找相邻未计算并且不是障碍的格了。加入 openList。排序 openList。循环以上部操作直到找到 end。</p>
+<p>删除数组的最后一位数据, 以这数据在去查找相邻未计算并且不是障碍的格子。加入 openList。排序 openList。循环以上部操作直到找到 end。</p>
 <p><img src="https://cdn.summerfarm.net/ijsuc/img/comput-path.png" alt="路线搜索过程"></p>
-<h1 id="画路线"><a href="#画路线" class="headerlink" title="画路线"></a>画路线</h1><p>找到 end 后我们以<code>parent</code>递归查到 start。过程中 type 值改为 passby。</p>
+<h1 id="画路线"><a href="#画路线" class="headerlink" title="画路线"></a>画路线</h1><p>找到 end 后我们以<code>parent</code>递归查到 start。过程中 type 值改为 passby。</p>
 <p><img src="https://cdn.summerfarm.net/ijsuc/img/passby.png" alt="画出路线"></p>
 
     </div>
