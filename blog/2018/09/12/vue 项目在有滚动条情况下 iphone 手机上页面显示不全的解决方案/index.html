@@ -28,7 +28,7 @@
     <!--Title-->
 
 
-<title>A星寻路 demo 详解 | 个人博客</title>
+<title>vue 项目在有滚动条情况下 iphone 手机上页面显示不全的解决方案 | 个人博客</title>
 
 
     <link rel="alternate" href="/atom.xml" title="个人博客" type="application/atom+xml">
@@ -109,9 +109,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="A星寻路 demo 详解">
+        <h1 id="vue 项目在有滚动条情况下 iphone 手机上页面显示不全的解决方案">
             
-	            A星寻路 demo 详解
+	            vue 项目在有滚动条情况下 iphone 手机上页面显示不全的解决方案
             
         </h1>
         <div class="post-meta">
@@ -119,8 +119,8 @@
     
     <span class="categories-meta fa-wrap">
         <i class="fa fa-folder-open-o"></i>
-        <a href="/categories/学习笔记">
-            学习笔记
+        <a href="/categories/ ">
+             
         </a>
     </span>
     
@@ -129,10 +129,6 @@
         <i class="fa fa-tags"></i>
         <span class="tags-meta">
             
-                
-                    <a href="/tags/学习笔记" title='学习笔记'>
-                        学习笔记
-                    </a>
                 
             
         </span>
@@ -143,38 +139,25 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2019/11/25</span>
+            <span class="date-meta">2018/09/12</span>
         </span>
     
 </div>
 
             
             
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>547</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
     </div>
     
     <div class="post-body post-content">
-        <h1 id="Model-Data"><a href="#Model-Data" class="headerlink" title="Model Data"></a>Model Data</h1><p>假设由一个 49 格小格组成个地图, 每小格为每个节点信息, 开始格子 23, 结束格 27, 障碍格了 18、25、32。 </p>
-<p><img src="https://cdn.summerfarm.net/ijsuc/img/amap.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const data = [&#123; </span><br><span class="line">  index: 1, </span><br><span class="line">  direction: [ N, W, S, E ],</span><br><span class="line">  G: Number,</span><br><span class="line">  x: Number,</span><br><span class="line">  y: Number,</span><br><span class="line">  type: String</span><br><span class="line">&#125;, ...]</span><br></pre></td></tr></table></figure></p>
-<p><code>index</code> 当前格子索引可用 Map 存起来。<br><code>direction</code> 方向(也可为8个方向), 当前格子相邻格子<code>index</code>, 无则为 null。<br><code>x</code> 当前格子的坐标。<br><code>y</code> 当前格子的坐标。<br><code>type</code> start 开始点, end 终点, roadblock 障碍, openList 已计算过 FGH 值, passby 路线。</p>
-<h1 id="FGH-值计算"><a href="#FGH-值计算" class="headerlink" title="FGH 值计算"></a>FGH 值计算</h1><p>计算以起点相邻格子的 FGH 值。</p>
-<h2 id="G-值计算"><a href="#G-值计算" class="headerlink" title="G 值计算"></a>G 值计算</h2><p>G = 从起点移动格子之间的成本。</p>
-<p>假设移动 1 格为 10, 那么 2 格为 2 * 10。</p>
-<p>公式</p>
-<p>G = | x - x1 | + | y - y1 |</p>
-<h2 id="H-值计算"><a href="#H-值计算" class="headerlink" title="H 值计算"></a>H 值计算</h2><p>H = 指定的方格移动到终点的估算成本, 在这个例子我们采用的是<a href="https://baike.baidu.com/item/%E6%9B%BC%E5%93%88%E9%A1%BF%E8%B7%9D%E7%A6%BB" target="_blank" rel="noopener">曼哈顿距离</a></p>
-<p><img src="https://cdn.summerfarm.net/ijsuc/img/h.jpg" alt="曼哈顿距离"></p>
-<p>公式</p>
-<p>H = | x - x1 | + | y - y1 |</p>
-<p><code>x, y</code> 为每个格子的 x, y<br><code>x1, y1</code> 为 end 的 x, y</p>
-<h2 id="F-值计算"><a href="#F-值计算" class="headerlink" title="F 值计算"></a>F 值计算</h2><p>F = G + H</p>
-<p>开始格子 23 相邻格子 <code>diretion</code> 获得 16、24、30、22。计算出 FGH 值, parent 存在格子数据内。已计算的格子 type 值改为 openList, 代表已计算过不在计算, 将格子数据存放在数组 openList 内。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Map.get( 16 ).G = G;</span><br><span class="line">Map.get( 16 ).H = H;</span><br><span class="line">Map.get( 16 ).F = G + H;</span><br></pre></td></tr></table></figure>
-<h1 id="路线搜索"><a href="#路线搜索" class="headerlink" title="路线搜索"></a>路线搜索</h1><p>以开始点相邻格子计算出的数组 openList 以最小 F 值排序从大到小( F相等取最小H)。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openList.sort(( a, b ) =&gt; b.F - a.F || b.H - a.H );</span><br></pre></td></tr></table></figure>
-<p>删除数组的最后一位数据, 以这数据在去查找相邻未计算并且不是障碍的格子。加入 openList。排序 openList。循环以上部操作直到找到 end。</p>
-<p><img src="https://cdn.summerfarm.net/ijsuc/img/comput-path.png" alt="路线搜索过程"></p>
-<h1 id="画路线"><a href="#画路线" class="headerlink" title="画路线"></a>画路线</h1><p>找到 end 后我们以<code>parent</code>递归查到 start。过程中 type 值改为 passby。</p>
-<p><img src="https://cdn.summerfarm.net/ijsuc/img/passby.png" alt="画出路线"></p>
+        <h2 id="问题来源"><a href="#问题来源" class="headerlink" title="问题来源"></a>问题来源</h2><p>在 ios 系统下有滚动条, 滚动时会出现卡顿为了解决这个问题, 我们写 css 时会加上 <code>-webkit-overflow-scrolling: touch;</code> 这个属性和值。iphone 手机会使用硬件加速, 从而使页面滑动得更加流畅, 然而也导致了部份页面出现空白的情况。</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>方案 1: 在进入页面前先把 <code>-webkit-overflow-scrolling</code> 的属性值设为 <code>auto</code>, 进入页面后在把 <code>touch</code> 即可。</p>
+<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//入口页面</span></span><br><span class="line">&lt;div </span><br><span class="line">  <span class="class"><span class="keyword">class</span></span>=<span class="string">"content-body"</span></span><br><span class="line">  :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123;</span></span><br><span class="line"><span class="string">    scrolling: scrolling //(初史值 true)</span></span><br><span class="line"><span class="string">  &#125;"</span>&gt;</span><br><span class="line">  &lt;router-view&gt;<span class="xml"><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;style&gt;</span><br><span class="line">.content-body&#123;</span><br><span class="line">  overflow-x: hidden;</span><br><span class="line">  overflow-y: auto;</span><br><span class="line">  -webkit-overflow-scrolling: auto;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">content-body.scrolling&#123;</span><br><span class="line">  -webkit-overflow-scrolling: touch;</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/style&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 进入页面前 js 代码 Vue.prototype.$isIos = /i</span>P\w+ OS/.test( navigator.userAgent );</span><br><span class="line"><span class="keyword">if</span>( <span class="keyword">this</span>.$isIos )&#123;</span><br><span class="line">  <span class="keyword">this</span>.$parent.scrolling = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 进入页面后延迟是为了让页面元素显示出来后, 在开起硬件加速</span></span><br><span class="line"><span class="keyword">if</span>( <span class="keyword">this</span>.$isIos )&#123;</span><br><span class="line">  setTimeout( <span class="function"><span class="params">()</span>=&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">this</span>.$parent.scrolling = <span class="literal">true</span>; <span class="comment">//直接更改父组件的数据, 也可以用 this.$emit 上传事件在父组件上更改数据</span></span><br><span class="line">  &#125;, <span class="number">500</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方案二: <code>transform: translate3d(0,0,0)</code> 最简单的方法, 触发GPU加速</p>
+<p>　</p>
 
     </div>
 
@@ -192,15 +175,15 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/blog/2020/03/12/使用Node.js和HTML5的视频流/" class="pre-post btn btn-default" title='使用 Node.js 和 HTML5 的视频流'>
+        <a href="/blog/2019/10/21/dialog-对话框-electron-remote-dialog/" class="pre-post btn btn-default" title='dialog(对话框 electron.remote.dialog)'>
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">使用 Node.js 和 HTML5 的视频流</span>
+            <span class="hidden-xs">dialog(对话框 electron.remote.dialog)</span>
         </a>
     
     
-        <a href="/blog/2019/10/21/dialog-对话框-electron-remote-dialog/" class="next-post btn btn-default" title='dialog(对话框 electron.remote.dialog)'>
+        <a href="/blog/2018/05/17/嵌入网页/" class="next-post btn btn-default" title='小程序内嵌公众号网页'>
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">dialog(对话框 electron.remote.dialog)</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">小程序内嵌公众号网页</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
