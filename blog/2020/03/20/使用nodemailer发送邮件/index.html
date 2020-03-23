@@ -47,17 +47,13 @@
 
 
 
-    
-	<div class="hide">
-		<script type="text/javascript">
-			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
-		</script>
-	</div>
+    <!-- 
 
 
 
+ -->
 
-
+	<script type="text/javascript" src="http://tajs.qq.com/stats?sId=" charset="UTF-8"></script>
 
     
 </head>
@@ -161,7 +157,7 @@
 <p>nodemailer 需要一种可以通过其发送电子邮件的传输服务。在此示例中，我使用的是 qq。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let transporter = nodemailer.createTransport(&#123;</span><br><span class="line">    host: &apos;smtp.qq.com&apos;,</span><br><span class="line">    service: &apos;qq&apos;,</span><br><span class="line">    port: 465,</span><br><span class="line">    secureConnection: true,</span><br><span class="line">    auth: &#123;</span><br><span class="line">      user: &apos;xxxxxx@qq.com&apos;,</span><br><span class="line">      pass: &apos;*******&apos; //这里的密码不是qq密码, 是你设置的 smtp 授权码</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
 <p>接下来设置发送内容</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mailOptions = &#123;</span><br><span class="line">    <span class="keyword">from</span>: <span class="string">'xxxxxx@qq.com'</span>, <span class="comment">//发送人邮箱</span></span><br><span class="line">    to: <span class="string">'xxxxx@139.com'</span>, <span class="comment">//接收人邮箱 多个接收人用豆号隔开</span></span><br><span class="line">    subject: <span class="string">'Hello'</span>, <span class="comment">//主题</span></span><br><span class="line">    html: &lt;p&gt;Hello world&lt;/p&gt; <span class="comment">// html</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mailOptions = &#123;</span><br><span class="line">    <span class="keyword">from</span>: <span class="string">'xxxxxx@qq.com'</span>, <span class="comment">//发送人邮箱</span></span><br><span class="line">    to: <span class="string">'xxxxx@139.com'</span>, <span class="comment">//接收人邮箱 多个接收人用豆号隔开</span></span><br><span class="line">    subject: <span class="string">'Hello'</span>, <span class="comment">//主题</span></span><br><span class="line">    html: <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello world<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span> <span class="comment">// html</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <p>发送邮件</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">transporter.sendMail（mailOptions，<span class="function"><span class="keyword">function</span>（<span class="title">err</span>，<span class="title">info</span>）</span>&#123; </span><br><span class="line">   <span class="keyword">if</span>（err）</span><br><span class="line">     <span class="built_in">console</span>.log（err）</span><br><span class="line">   <span class="keyword">else</span> </span><br><span class="line">     <span class="built_in">console</span>.log（info）; </span><br><span class="line">&#125;）;</span><br></pre></td></tr></table></figure>
 <p>sendMail 具有两个参数 mailOptions 和一个回调函数，在发送邮件时将调用该函数。当任何一封电子邮件成功发送而我们出错时，将调用回调函数。</p>
@@ -196,7 +192,7 @@
 	<!--PC和WAP自适应版-->
 <div id="SOHUCS"></div>
 <script type="text/javascript">
-	(function(){var appid='cyt8KmUC1';var conf='prod_855a68d3b3d91855360a6215672a505a';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
+	(function(){var appid='cysUlJU6s';var conf='prod_3ee9926a5fd802dcc74bfc5b1e4f264b';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>');}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}
 	c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});}})();
 </script>	
 
