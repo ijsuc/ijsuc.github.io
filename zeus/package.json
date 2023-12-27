@@ -10,7 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^1.6.3",
     "child_process": "^1.0.2",
     "cookie": "^0.3.1",
     "iview": "^2.0.0-rc.18",
